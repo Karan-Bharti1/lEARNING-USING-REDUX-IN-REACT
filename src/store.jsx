@@ -1,4 +1,7 @@
 import { createStore } from "redux";
+import { applyMiddleware } from "redux";
+import loggerMiddleware from "./loggerMiddleware";
+
 let initialState={counter:0}
 const counterReducer=(state= initialState,action)=>{
     switch (action.type){
@@ -10,5 +13,5 @@ const counterReducer=(state= initialState,action)=>{
             return state
     }
 }
-
-export default createStore(counterReducer)
+const store=createStore(counterReducer,applyMiddleware(loggerMiddleware))
+export default store
